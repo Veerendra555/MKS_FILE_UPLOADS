@@ -1,0 +1,94 @@
+<div class="card">
+    <div class="card-header page-content-header">
+        <div class="row">
+            <div class="col-md-6">
+                    <h3>Files</h3>
+            </div>
+            <div class="col-md-3">
+                <ng-multiselect-dropdown class="rd-btn" [placeholder]="'Select Client '" *ngIf="showDropdwon()" (onSelect)="onChangeData($event)" [(ngModel)]="selectedItems" [settings]="dropdownSettingCat" [data]="clientList">
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success" [routerLink]="['/add-file']" style="float:right;">+ File</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+       <div class="table-responsive">
+           <table  datatable   [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" class="table table-bordered table-striped">
+               <thead style="background-color:#fb9013;">
+                   <tr>
+                       <th>
+                           S NO
+                       </th>
+                       <th>
+                        Employee Name
+                 </th>
+                       <th>
+                           File Name
+                    </th>
+                    <th>
+                          File Size(MB)
+                     </th>
+                     <th>
+                          Uploaded Date
+                   </th>
+                     <th>
+                          File
+                      </th>
+                       <!-- <th>
+                         Status
+                      </th> -->
+                     <th>
+                       Actions
+                  </th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr *ngFor="let data of serviceData;let i = index;">
+                       <td >{{i+1}}</td>
+                       <td>{{data?.employee?.firstName}}</td>
+                       <td>{{data?.fileName.split('.')[0]}}</td>
+                       <td>{{bytesToMegaBytes(data?.fileSize)}}</td>
+                       <td>{{data?.createdAt  | date: 'MM/dd/yyyy'}}</td>
+                       <td>
+                        <a target="_blank" href="{{imageUrl}}{{data.serviceFileUrl}}" style="line-height:20px">
+                            <img  src="assets/images/eye.png"  height="25px"  />   
+                        </a>
+                        <!-- <img  src="{{imageUrl}}{{data.serviceImageUrl}}" width="70px" alt="service Image"/> -->
+                    </td>
+                       <!-- <td>
+                           <div class="custom-control custom-switch">
+                               <input
+                                 type="checkbox"
+                                 class="custom-control-input"
+                                 [checked]="data.isActive == true"
+                                 id="{{ data._id }}"
+                                 (change)="changeAdminStatus(data)"
+                               />
+                               <label
+                                 class="custom-control-label"
+                                 for="{{ data._id }}"
+                                 style="cursor: pointer;"
+                               ></label>
+                             </div>
+                             
+                       </td> -->
+                       <td>
+                           <img  src="assets/images/edit.png"  height="25px" (click)="editData(data._id)"  />
+                           <img  src="assets/images/delete.png" (click)="deleteService(data)"  height="25px"  />  
+                           <!-- <img  src="assets/images/more.png"  (click)="viewData(categorie)"  height="25px"  />   -->
+                       </td>
+                   </tr>
+               </tbody>
+           </table>
+        </div> 
+    </div>
+</div>  
+<!-- <div *ngIf="warningStatus" class="alert alert-danger alert-dismissible fade show" role="alert">
+   <strong> First Delete All SubCategorie Assign To This Categorie</strong>
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div> -->

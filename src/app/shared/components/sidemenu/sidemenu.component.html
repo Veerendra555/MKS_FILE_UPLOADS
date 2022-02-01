@@ -1,0 +1,86 @@
+<div class="side-menu">
+    <ul *ngIf="role == 'Admin';else other">
+        <li routerLinkActive="sactive">
+            <a  routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li>
+            <div class="accordion" id="sidemenudopdown">
+                <div class="card">
+                    <div class="card-header" id="m0">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
+                                data-target="#cm0" aria-expanded="true" aria-controls="cm0">
+                                Users<i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="cm0" class="collapse" aria-labelledby="m0" data-parent="#sidemenudopdown">
+                        <div class="card-body">
+                            <ul>
+                                <li routerLinkActive="sactive">
+                                    <a routerLink="/view-admins">
+                                        <i class="fa fa-circle pr-1" aria-hidden="true"></i>Admin</a>
+                                </li>
+                                <li routerLinkActive="sactive">
+                                    <a routerLink="/view-client">
+                                        <i class="fa fa-circle pr-1" aria-hidden="true"></i>Client</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+               <div class="card">
+                    <div class="card-header" id="m1">
+                        <h2 class="mb-1">
+                            <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
+                                data-target="#cm1" aria-expanded="true" aria-controls="cm1">
+                               Files <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="cm1" class="collapse" aria-labelledby="m1" data-parent="#sidemenudopdown">
+                        <div class="card-body">
+                            <ul>
+                                <li routerLinkActive="sactive">
+                                    <a routerLink="/view-file">
+                                        <i class="fa fa-circle pr-1" aria-hidden="true"></i>Upload Files</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ng-template #other>
+    <ul>
+        <li>
+            <div class="accordion" id="sidemenudopdown">
+               <div class="card">
+                    <div class="card-header" id="m1">
+                        <h2 class="mb-1">
+                            <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
+                                data-target="#cm1" aria-expanded="true" aria-controls="cm1">
+                               Files <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="cm1" class="collapse" aria-labelledby="m1" data-parent="#sidemenudopdown">
+                        <div class="card-body">
+                            <ul>
+                                <li routerLinkActive="sactive">
+                                    <a routerLink="/view-file">
+                                        <i class="fa fa-circle pr-1" aria-hidden="true"></i>Upload Files</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</ng-template>
+</div>

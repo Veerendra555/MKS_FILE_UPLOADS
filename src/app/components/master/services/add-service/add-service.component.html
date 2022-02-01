@@ -1,0 +1,77 @@
+<div class="page-content-header">
+    <h3>{{ id == null  ? "ADD " : "UPDATE " }} File</h3>
+</div>
+<div class="page-content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card overall-contentblock">
+                    <div class="card-body">
+                        <form #serviceForm='ngForm' novalidate (ngSubmit)="formSubmit(serviceForm)">
+                            <div class="form-group form-row">
+                                <label class="col-md-2 col-sm-3 col-form-label col-form-label-md text-sm-right" for="normal-input-1">File Name<span class="star">*</span></label>                      
+                                <div class="col-md-8 col-sm-8 mb-3">
+                                    <input type="text" class="form-control form-control-sm"  name='fileName'
+                                        [(ngModel)]="service.fileName" #fileName="ngModel" required readonly>
+                        
+                                    <div *ngIf="fileName.invalid && (fileName.dirty || fileName.touched)" class="form-text text-danger">
+                                        <div *ngIf="fileName.errors.required"> File Name is required. </div>
+                                    </div>
+                                </div>
+                         </div>
+                         <div class="form-group form-row">
+                            <label class="col-md-2 col-sm-3 col-form-label col-form-label-md text-sm-right" for="normal-input-1">File Size(Bytes)<span class="star">*</span></label>                      
+                            <div class="col-md-8 col-sm-8 mb-3">
+                                <input type="text" class="form-control form-control-sm"  name='fileSize'
+                                    [(ngModel)]="service.fileSize" #fileSize="ngModel" required readonly>
+                                <div *ngIf="fileSize.invalid && (fileSize.dirty || fileSize.touched)" class="form-text text-danger">
+                                    <div *ngIf="fileSize.errors.required"> File Size is required. </div>
+                                </div>
+                            </div>
+                     </div>
+                        <div class="form-group form-row">
+                            <label class="col-md-2 col-sm-3 col-form-label col-form-label-md text-sm-right" for="normal-input-1">Description<span class="star">*</span></label>                      
+                            <div class="col-md-8 col-sm-8 mb-3">
+                            <!-- <gx-card card-title="FullPage Editor"> -->
+                                <ck-editor class="mb-4"
+                                           name="fileDescription"
+                                           [(ngModel)]="service.fileDescription"
+                                            #fileDescription="ngModel"
+                                           [config]="config"
+                                           required
+                                           [fullPage]="fullPage"></ck-editor>
+                              <!-- </gx-card> -->
+                              <div *ngIf="fileDescription.invalid && (fileDescription.dirty || fileDescription.touched)"
+                              class="form-text text-danger">
+                              <div *ngIf="fileDescription.errors.required">Description is required. </div>
+                          </div>
+                              </div>
+                        </div>
+                        <div class="form-group form-row" style="display:none">
+                            <label class="col-md-2 col-sm-3 col-form-label col-form-label-md text-sm-right" for="normal-input-1">Image</label>                      
+                            <div class="col-md-8 col-sm-8 mb-3">
+                                <img  src="{{imageUrl}}{{oldImagePath}}" width="150px" height="100px" alt="service Image"/>
+                            </div>
+                       </div>
+                        <div class="form-group form-row">
+                            <label class="col-md-2 col-sm-3 col-form-label col-form-label-md text-sm-right" for="normal-input-1">File<span class="star">*</span></label>                      
+                            <div class="col-md-8 col-sm-8 mb-3">
+                                <input type="file" class="form-control form-control-sm"  name='serviceFileUrl'
+                                [(ngModel)]="service.serviceFileUrl" #serviceFileUrl="ngModel" (change)="selectFile($event)">
+                    
+                                <div *ngIf="serviceFileUrl.invalid && (serviceFileUrl.dirty || serviceFileUrl.touched)" class="form-text text-danger">
+                                    <div *ngIf="serviceFileUrl.errors.required"> FIle is required. </div>
+                                </div>
+                            </div>
+                       </div>
+                        <div class="row">
+                            <button class="btn btn-primary mr-2" style="margin-left: 40%;" [disabled]="serviceForm.invalid">Submit</button>
+                            <a class="btn btn-danger"  (click)="backClicked()" >Back</a>
+                        </div>
+                        </form>   
+                 </div>
+               </div>
+               </div>
+        </div>
+  </div>
+</div>
